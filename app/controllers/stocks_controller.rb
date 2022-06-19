@@ -8,10 +8,16 @@ class StocksController < ApplicationController
           format.js { render partial: 'users/result' }
         end
       else
-        redirect_to my_portfolio_path, alert: 'Not found entered symbol :('
+        respond_to do |format|
+          flash.now[:alert] = 'Not found entered symbol :('
+          format.js { render partial: 'users/result' }
+        end
       end
     else
-      redirect_to my_portfolio_path, alert: 'This field cannot be empty.'
+      respond_to do |format|
+        flash.now[:alert] = 'This field cannot be empty.'
+        format.js { render partial: 'users/result' }
+      end
     end
   end
 end
