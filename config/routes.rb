@@ -8,4 +8,5 @@ Rails.application.routes.draw do
   get 'search_stock', to: 'stocks#search'
 
   resources :user_stocks, only: %i[create destroy]
+  resources :friendships, only: %i[index destroy]
 end
