@@ -26,12 +26,12 @@
       <div class="card-body">
       <p>
         <a class="btn btn-success" data-bs-toggle="collapse" href="#FriendData" role="button" aria-expanded="false" aria-controls="FriendData">
-          Friend Info 
+          Info 
         </a>
         <a class="btn btn-success" data-bs-toggle="collapse" href="#FriendStocks" role="button" aria-expanded="false" aria-controls="FriendStocks">
-          Friend Stocks
+          Stocks
         </a>
-        <%= link_to 'Stop tracking', friendship_path(friendship), method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-success' %>
+        <%= link_to 'Stop tracking', friendship_path(friendship), method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-danger' %>
       </p>
       <div class="collapse" id="FriendData">
         <div class="card card-body">
