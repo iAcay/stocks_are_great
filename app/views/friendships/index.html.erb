@@ -1,16 +1,37 @@
-<div class="container col-10 mt-5">
+<div class="search-area">
+  <h3>Search other Users</h3>
+  <%= form_tag search_friend_path, remote: true, method: :get do %>
+    <div class="form-group row">
+      <div class="col-sm-9 no-right-padding">
+        <%= text_field_tag :friend, params[:friend], placeholder: "Name or e-mail", autofocus: true, class: 'form-control form-control-lg' %>
+      </div>
+      <div class="col-sm-3 no-left-padding">
+        <%= button_tag type: :submit, class: 'btn btn-success btn-lg' do %>
+          <% fa_icon 'search' %>
+        <% end %>
+      </div>
+    </div>
+  <% end %>
+</div>
+<div id="friend-results">
+
+</div>
+
+
+<h1 class='text-center mt-5'>Your friend list</h1>
+<div class="container col-10 mt-3">
   <% @friendships.each do |friendship| %>
     <div class="card">
       <h5 class="card-header"><%= friendship.friend.full_name %></h5>
       <div class="card-body">
       <p>
-        <a class="btn btn-primary" data-bs-toggle="collapse" href="#FriendData" role="button" aria-expanded="false" aria-controls="FriendData">
+        <a class="btn btn-success" data-bs-toggle="collapse" href="#FriendData" role="button" aria-expanded="false" aria-controls="FriendData">
           Friend Info 
         </a>
-        <a class="btn btn-primary" data-bs-toggle="collapse" href="#FriendStocks" role="button" aria-expanded="false" aria-controls="FriendStocks">
+        <a class="btn btn-success" data-bs-toggle="collapse" href="#FriendStocks" role="button" aria-expanded="false" aria-controls="FriendStocks">
           Friend Stocks
         </a>
-        <%= link_to 'Stop tracking', friendship_path(friendship), method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-primary' %>
+        <%= link_to 'Stop tracking', friendship_path(friendship), method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-success' %>
       </p>
       <div class="collapse" id="FriendData">
         <div class="card card-body">
