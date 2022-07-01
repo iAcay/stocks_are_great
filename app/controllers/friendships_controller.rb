@@ -11,8 +11,8 @@ class FriendshipsController < ApplicationController
 
   def search
     if params[:friend].present?
-      @friend = params[:friend]
-      if @friend
+      @friends = User.where.not(id: current_user.id).search(params[:friend])
+      if @friends
         respond_to do |format|
           format.js { render partial: 'friendships/friend_result' }
         end
