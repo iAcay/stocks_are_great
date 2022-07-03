@@ -1,5 +1,5 @@
-<div class="search-area">
-  <h3>Search other Users</h3>
+<div class="search-area container col-10">
+  <h3>Search Users <%= fa_icon 'search' %></h3>
   <%= form_tag search_friend_path, remote: true, method: :get do %>
     <div class="form-group row">
       <div class="col-sm-9 no-right-padding">
@@ -13,10 +13,9 @@
     </div>
   <% end %>
 </div>
-<div id="friend-results">
+<div id="friend-results", class='container col-10 mt-3'>
 
 </div>
-
 
 <h1 class='text-center mt-5'>Your friend list</h1>
 <div class="container col-10 mt-3">
@@ -25,22 +24,22 @@
       <h5 class="card-header"><%= friendship.friend.full_name %></h5>
       <div class="card-body">
       <p>
-        <a class="btn btn-success" data-bs-toggle="collapse" href="#FriendData" role="button" aria-expanded="false" aria-controls="FriendData">
+        <a class="btn btn-success" data-bs-toggle="collapse" href="#FriendData<%="#{friendship.id}"%>" role="button" aria-expanded="false" aria-controls="FriendData">
           Info 
         </a>
-        <a class="btn btn-success" data-bs-toggle="collapse" href="#FriendStocks" role="button" aria-expanded="false" aria-controls="FriendStocks">
+        <a class="btn btn-success" data-bs-toggle="collapse" href="#FriendStocks<%="#{friendship.id}"%>" role="button" aria-expanded="false" aria-controls="FriendStocks">
           Stocks
         </a>
         <%= link_to 'Stop tracking', friendship_path(friendship), method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-danger' %>
       </p>
-      <div class="collapse" id="FriendData">
+      <div class="collapse" id="FriendData<%="#{friendship.id}"%>">
         <div class="card card-body">
           <%= friendship.friend.email %>
         </div>
       </div>
-      <div class="collapse" id="FriendStocks">
+      <div class="collapse" id="FriendStocks<%="#{friendship.id}"%>">
         <div class="card card-body"> 
-          <table class="table table-bordered table-hover mt-5">
+          <table class="table table-bordered table-hover">
             <thead>
               <tr>
                 <th scope="col">Ticker</th>
