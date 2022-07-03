@@ -1,6 +1,6 @@
 class FriendshipsController < ApplicationController
   def index
-    @friendships = Friendship.where(user_id: current_user.id)
+    @friendships = Friendship.where(user: current_user).includes(friend: [:user_stocks, :stocks])
   end
 
   def create
