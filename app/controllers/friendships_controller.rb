@@ -5,8 +5,12 @@ class FriendshipsController < ApplicationController
 
   def create
     friend = User.find(params[:friend])
-    friendship = Friendship.create(user: current_user, friend: friend)
-    redirect_to friendships_path, notice: "You are now following #{friend.full_name}."
+    friendship = Friendship.new(user: current_user, friend: friend)
+    if friendship.save
+      redirect_to friendships_path, notice: "You are now following #{friend.full_name}."
+    else
+      redirect_to friendship_path, alert: "Something went wrong :("
+    end
   end
 
   def destroy
