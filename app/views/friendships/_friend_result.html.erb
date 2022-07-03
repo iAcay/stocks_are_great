@@ -10,8 +10,7 @@
           <tr>
             <td><strong>Name: </strong> <%= friend.full_name %></td>
             <td><strong>Email: </strong> <%= friend.email %></td>
-            <td><%= link_to 'View Profile', '#',
-                                        class: 'btn btn-sm btn-outline-success' %></td>
+            <td><%= link_to 'View Profile', user_path(friend), class: 'btn btn-sm btn-outline-success' %></td>
             <% if !current_user.friends.include?(friend) %>
               <td><%= link_to 'Follow friend?', friendships_path(user: current_user, friend: friend), class: "btn btn-sm btn-outline-success", 
                                                 method: :post, data: { confirm: 'Are you sure you want to follow this user?' } %></td>

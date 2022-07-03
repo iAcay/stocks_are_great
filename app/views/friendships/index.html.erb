@@ -34,7 +34,9 @@
       </p>
       <div class="collapse" id="FriendData<%="#{friendship.id}"%>">
         <div class="card card-body">
-          <%= friendship.friend.email %>
+          <h5 class='text-center'>Email: <%= friendship.friend.email %></h5>
+          <h5 class='text-center'>Number of tracked stocks: <%= friendship.friend.stocks.count %></h5>
+          <p class='text-end'><%= link_to 'View Profile', user_path(friendship.friend), class: 'btn btn-outline-success' %></p>
         </div>
       </div>
       <div class="collapse" id="FriendStocks<%="#{friendship.id}"%>">

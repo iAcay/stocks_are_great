@@ -1,0 +1,63 @@
+<div class="container py-5 h-100">
+  <div class="row d-flex justify-content-center align-items-center h-100">
+    <div class="col col-lg-9 col-xl-7">
+      <div class="card">
+        <div class="rounded-top text-white d-flex flex-row" style="height:200px;" id="user-top-image">
+          <div class="ms-4 mt-5 d-flex flex-column" style="width: 150px;">
+            <img src="https://as2.ftcdn.net/v2/jpg/01/00/97/47/1000_F_100974747_kTvcXn1AJLHUj8M6XPRPTEBVXfp54SAf.jpg"
+              alt="Generic placeholder image" class="img-fluid img-thumbnail mt-4 mb-2"
+              style="width: 150px; z-index: 1">
+            <% if !current_user.friends.include?(@user) %>
+              <%= link_to 'Follow friend?', friendships_path(user: current_user, friend: @user), class: "btn btn-sm btn-outline-success", 
+                                            method: :post, data: { confirm: 'Are you sure you want to follow this user?' },
+                                            style: 'z-index: 1;' %>
+            <% else %>
+              <span class='badge rounded-pill bg-success' data-mdb-ripple-color="dark" style="z-index: 1;">You are friends</span>
+            <% end %>
+          </div>
+          <div class="ms-3" style="margin-top: 130px;">
+            <h5><%= @user.full_name %></h5>
+            <p><%= @user.email %></p>
+          </div>
+        </div>
+        <div class="p-4 text-black" style="background-color: #f8f9fa;">
+          <div class="d-flex justify-content-end text-center py-1">
+            <div>
+              <p class="mb-1 h5"><%= @user.stocks.count %></p>
+              <p class="small text-muted mb-0">Tracked stocks</p>
+            </div>
+            <div class="px-3">
+              <p class="mb-1 h5"><%= @user.friends.count %></p>
+              <p class="small text-muted mb-0">Following</p>
+            </div>
+          </div>
+        </div>
+        <div class="card-body p-4 text-black">
+          <div class="mb-5">
+            <p class="lead fw-normal mb-1 text-center">Tracked stocks</p>
+            <div class="p-4" style="background-color: #f8f9fa;">
+              <table class="table table-bordered table-hover">
+                <thead>
+                  <tr>
+                    <th scope="col">Ticker</th>
+                    <th scope="col">Name</th>
+                    <th scope="col">Price</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <% @user.stocks.each do |stock| %>
+                    <tr>
+                      <th scope="row"><%= stock.ticker %></th>
+                      <td><%= stock.name %></td>
+                      <td><%= stock.last_price %></td>
+                    </tr>
+                  <% end %>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
