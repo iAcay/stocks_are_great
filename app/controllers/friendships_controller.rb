@@ -7,9 +7,9 @@ class FriendshipsController < ApplicationController
     friend = User.find(params[:friend])
     friendship = Friendship.new(user: current_user, friend: friend)
     if friendship.save
-      redirect_to friendships_path, notice: "You are now following #{friend.full_name}."
+      redirect_back fallback_location: friendships_path, notice: "You are now following #{friend.full_name}."
     else
-      redirect_to friendship_path, alert: "Something went wrong :("
+      redirect_back fallback_location: friendships_path, alert: "Something went wrong :("
     end
   end
 
